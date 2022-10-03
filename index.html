@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>joga na veia</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <style>
+            .x {
+                font-size: 200px;
+            }
+    
+            .o {
+                font-size: 200px;
+            }
+    
+            .casa {
+                position: relative;
+                background-color: white;
+                border-color: lightblue;
+                width: 100px;
+                height: 100px;
+                font-size: 60px;
+                text-align: center;
+            }
+    
+            .casa:hover {
+                top: -3px;
+                box-shadow: 0 2px 2px lightgray
+            }
+        </style>
+    </head>
+        .casa {
+            position: relative;
+            background-color: white;
+            border-color: lightblue;
+            width: 100px;
+            height: 100px;
+            font-size: 60px;
+            text-align: center;
+        }
+
+        .casa:hover {
+            top: -3px;
+            box-shadow: 0 2px 2px lightgray
+        }
+    </style>
+
+</head>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <br> <br>
+            <h1 onclick="reseta()" style="color: lightseagreen; text-align: center;">
+                 Jogo da Vea
+            </h1>
+            <br> <br>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <table style="text-align: center;" class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>
+                            <button id="00" onclick="pos00()" class="casa"></button>
+                        </td>
+                        <td>
+                            <button id="01" onclick="pos01()" class="casa"></button>
+                        </td>
+                        <td>
+                            <button id="02" onclick="pos02()" class="casa"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="10" onclick="pos10()" class="casa"></button>
+                        </td>
+                        <td>
+                            <button id="11" onclick="pos11()" class="casa"></button>
+                        </td>
+                        <td>
+                            <button id="12" onclick="pos12()" class="casa"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="20" onclick="pos20()" class="casa"></button>
+                        </td>
+                        <td>
+                            <button id="21" onclick="pos21()" class="casa"></button>
+                        </td>
+                        <td>
+                            <button id="22" onclick="pos22()" class="casa"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <center>
+                <h6 id="oo"></h6>
+                <h1 class="o" id="o"></h1>
+            </center>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align: center;" id="msg"></h3>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
+<script>
+  let vez = "O"
+    let velha = [3] // array criado com 3 posições(0,1,2)
+    velha[0] = [3]
+    velha[1] = [3]
+    velha[2] = [3]
+
+    function verificaVez() {
+        if (vez == "O") {
+            vez = "X"
+            document.getElementById("xx").innerHTML = ""
+            document.getElementById("x").innerHTML = ""
+            document.getElementById("oo").innerHTML = "Vez do"
+            document.getElementById("o").innerHTML = "O"
+        }
+        else {
+            vez = "O"
+            document.getElementById("o").innerHTML = ""
+            document.getElementById("oo").innerHTML = ""
+            document.getElementById("xx").innerHTML = "Vez do"
+            document.getElementById("x").innerHTML = "X"
+        }
+    }
+    function pos00() {
+        verificaVez()
+        velha[0][0] = vez
+        var botao = document.getElementById("00")
+        botao.innerHTML = vez
+        botao.disabled = true;
+        botao.style.backgroundColor = "lightblue"
+        botao.style.color = "black"
+        win1()
+        win4()
+        win7()
+    }
+    function pos01() {
+        verificaVez()
+        velha[0][1] = vez
+        var botao = document.getElementById("01")
+        botao.innerHTML = vez
+        botao.disabled = true;
+        botao.style.backgroundColor = "lightblue"
+        botao.style.color = "black"
+        win1()
+        win5()
+    }
+    function pos02() {
+        verificaVez()
+        velha[0][2] = vez
+        var botao = document.getElementById("02")
+        botao.innerHTML = vez
+        botao.disabled = true;
+        botao.style.backgroundColor = "lightblue"
+        botao.style.color = "black"
+        win1()
+        win6()
+        win8()
+    }
+    function pos10() {
+        verificaVez()
+        velha[1][0] = vez
+        var botao = document.getElementById("10")
+        botao.innerHTML = vez
+        botao.disabled = true;
+        botao.style.backgroundColor = "lightblue"
+        botao.style.color = "black"
+        win2()
+        win4()
+    }
+    function pos11() {
+        verificaVez()
+        velha[1][1] = vez
+        var botao = document.getElementById("11")
+        botao.innerHTML = vez
+        botao.disabled = true;
+        botao.style.backgroundColor = "lightblue"
+        botao.style.color = "black"
+        win2()
+        win5()
+        win7()
+        win8()
+    }
+    function pos12() {
+        verificaVez()
+        velha[1][2] = vez
+        var botao = document.getElementById("12")
+        botao.innerHTML = vez
+        botao.disabled = true;
+        botao.style.backgroundColor = "lightblue"
+        botao.style.color = "black"
+        win2()
+        win6()
+    }
+    function pos20() {
+        verificaVez()
+        velha[2][0] = vez
+        var botao = document.getElementById("20")
+        botao.innerHTML = vez
+        botao.disabled = true;
+        botao.style.backgroundColor = "lightblue"
+        botao.style.color = "black"
+        win3()
+        win4()
+        win8()
+    }
+    function pos21() {
+        verificaVez()
+        velha[2][1] = vez
+        var botao = document.getElementById("21")
+        botao.innerHTML = vez
+        botao.disabled = true;
+        botao.style.backgroundColor = "lightblue"
+        botao.style.color = "black"
+        win3()
+        win5()
+    }
+    function pos22() {
+        verificaVez()
+        velha[2][2] = vez
+        var botao = document.getElementById("22")
+        botao.innerHTML = vez
+        botao.disabled = true;
+        botao.style.backgroundColor = "lightblue"
+        botao.style.color = "black"
+        win3()
+        win6()
+        win7()
+    }
+    function win1() {
+        // linha 1
+        if (velha[0][0] == velha[0][1] && velha[0][1] == velha[0][2]) {
+            document.getElementById("xx").innerHTML = ""
+            document.getElementById("x").innerHTML = ""
+            document.getElementById("o").innerHTML = ""
+            document.getElementById("oo").innerHTML = ""
+            desativaBotao()
+            
+            setTimeout(function () {
+                document.getElementById("msg").innerHTML = vez + " ganhou!"
+            }, 0, 1)
+        }
+        verificaEmpate()
+
+    }
+    function win2() {
+        // linha 2
+        if (velha[1][0] == velha[1][1] && velha[1][1] == velha[1][2]) {
+            document.getElementById("xx").innerHTML = ""
+            document.getElementById("x").innerHTML = ""
+            document.getElementById("o").innerHTML = ""
+            document.getElementById("oo").innerHTML = ""
+            desativaBotao()
+            setTimeout(function () {
+                document.getElementById("msg").innerHTML = vez + " ganhou!"
+            }, 0, 1)
+        }
+        verificaEmpate()
+
+    }
+    function win3() {
+        // linha 3
+        if (velha[2][0] == velha[2][1] && velha[2][1] == velha[2][2]) {
+            document.getElementById("xx").innerHTML = ""
+            document.getElementById("x").innerHTML = ""
+            document.getElementById("o").innerHTML = ""
+            document.getElementById("oo").innerHTML = ""
+            desativaBotao()
+            setTimeout(function () {
+                document.getElementById("msg").innerHTML = vez + " ganhou!"
+            }, 0, 1)
+        }
+        verificaEmpate()
+
+    }
+    function win4() {
+        // coluna 1
+        if (velha[0][0] == velha[1][0] && velha[1][0] == velha[2][0]) {
+            document.getElementById("xx").innerHTML = ""
+            document.getElementById("x").innerHTML = ""
+            document.getElementById("o").innerHTML = ""
+            document.getElementById("oo").innerHTML = ""
+            desativaBotao()
+            setTimeout(function () {
+                document.getElementById("msg").innerHTML = vez + " ganhou!"
+            }, 0, 1)
+        }
+        verificaEmpate()
+
+    }
+    function win5() {
+        // coluna 2
+        if (velha[0][1] == velha[1][1] && velha[1][1] == velha[2][1]) {
+            document.getElementById("xx").innerHTML = ""
+            document.getElementById("x").innerHTML = ""
+            document.getElementById("o").innerHTML = ""
+            document.getElementById("oo").innerHTML = ""
+            desativaBotao()
+            setTimeout(function () {
+                document.getElementById("msg").innerHTML = vez + " ganhou!"
+            }, 0, 1)
+        }
+        verificaEmpate()
+
+    }
+    function win6() {
+        // coluna 3 
+        if (velha[0][2] == velha[1][2] && velha[1][2] == velha[2][2]) {
+            document.getElementById("xx").innerHTML = ""
+            document.getElementById("x").innerHTML = ""
+            document.getElementById("o").innerHTML = ""
+            document.getElementById("oo").innerHTML = ""
+            desativaBotao()
+            setTimeout(function () {
+                document.getElementById("msg").innerHTML = vez + " ganhou!"
+            }, 0, 1)
+        }
+        verificaEmpate()
+
+    }
+    function win7() {
+        // diagonal 1
+        if (velha[0][0] == velha[1][1] && velha[1][1] == velha[2][2]) {
+            document.getElementById("xx").innerHTML = ""
+            document.getElementById("x").innerHTML = ""
+            document.getElementById("o").innerHTML = ""
+            document.getElementById("oo").innerHTML = ""
+            desativaBotao()
+            setTimeout(function () {
+                document.getElementById("msg").innerHTML = vez + " ganhou!"
+            }, 0, 1)
+        }
+        verificaEmpate()
+
+    }
+    function win8() {
+        // diagonal 2
+        if (velha[0][2] == velha[1][1] && velha[1][1] == velha[2][0]) {
+            document.getElementById("xx").innerHTML = ""
+            document.getElementById("x").innerHTML = ""
+            document.getElementById("o").innerHTML = ""
+            document.getElementById("oo").innerHTML = ""
+            desativaBotao()
+            setTimeout(function () {
+                document.getElementById("msg").innerHTML = vez + " ganhou!"
+            }, 0, 1)
+        }
+        verificaEmpate()
+    }
+    function verificaEmpate() {
+        if (document.getElementById("00").innerHTML != "" && document.getElementById("01").innerHTML != "" && document.getElementById("02").innerHTML != "") {
+            if (document.getElementById("10").innerHTML != "" && document.getElementById("11").innerHTML != "" && document.getElementById("12").innerHTML != "") {
+                if (document.getElementById("20").innerHTML != "" && document.getElementById("21").innerHTML != "" && document.getElementById("22").innerHTML != "") {
+                    document.getElementById("msg").innerHTML = "Empate!"
+                }
+            }
+        }
+    }
+    function desativaBotao() {
+        document.getElementById("00").disabled = true
+        document.getElementById("01").disabled = true
+        document.getElementById("02").disabled = true
+        document.getElementById("10").disabled = true
+        document.getElementById("11").disabled = true
+        document.getElementById("12").disabled = true
+        document.getElementById("20").disabled = true
+        document.getElementById("21").disabled = true
+        document.getElementById("22").disabled = true
+    }
+    function reseta() {
+        document.getElementById("00").disabled = false
+        document.getElementById("01").disabled = false
+        document.getElementById("02").disabled = false
+        document.getElementById("10").disabled = false
+        document.getElementById("11").disabled = false
+        document.getElementById("12").disabled = false
+        document.getElementById("20").disabled = false
+        document.getElementById("21").disabled = false
+        document.getElementById("22").disabled = false
+        document.getElementById("00").innerHTML = null
+        document.getElementById("01").innerHTML = null
+        document.getElementById("02").innerHTML = null
+        document.getElementById("10").innerHTML = null
+        document.getElementById("11").innerHTML = null
+        document.getElementById("12").innerHTML = null
+        document.getElementById("20").innerHTML = null
+        document.getElementById("21").innerHTML = null
+        document.getElementById("22").innerHTML = null
+        document.getElementById("00").style.backgroundColor = "white"
+        document.getElementById("01").style.backgroundColor = "white"
+        document.getElementById("02").style.backgroundColor = "white"
+        document.getElementById("10").style.backgroundColor = "white"
+        document.getElementById("11").style.backgroundColor = "white"
+        document.getElementById("12").style.backgroundColor = "white"
+        document.getElementById("20").style.backgroundColor = "white"
+        document.getElementById("21").style.backgroundColor = "white"
+        document.getElementById("22").style.backgroundColor = "white"
+        document.getElementById("msg").innerHTML = null
+        velha = [[], [], []]
+    }
+</script>
